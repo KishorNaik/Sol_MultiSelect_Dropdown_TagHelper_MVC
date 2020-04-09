@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model Sol_Demo.ViewModels.ProductViewModel
+
+<form asp-controller="Demo" asp-action="OnSubmit">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="ddlProductList">Whisky Brands :</label>
+                    <multi-select 
+                                  item-source="@Model.ProductList" 
+                                  selected-items="@Model.SelectedProduct"
+                                 class="form-control js-example-basic-multiple"
+                                  ></multi-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <input type="submit" class="btn btn-danger" value="Submit"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                @if(Model?.DisplayProductList?.Count()>=0){
+
+                    <h5>Missing those Brands during lockdown:</h5>
+                    <ul>
+                        @foreach (var displayProductList in Model.DisplayProductList)
+                        {
+                            <li>@displayProductList.ProductName</li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
